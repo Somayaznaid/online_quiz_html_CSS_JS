@@ -18,10 +18,10 @@ let get_answers = [];
 const currentSession = sessionStorage.getItem("users_log");
 const currentSessionObj = JSON.parse(currentSession); // turn to obj
 
-   if (currentSessionObj === null) { // url chrome
-    window.location.href="login.html";
+if (currentSessionObj === null) { // url chrome
+  window.location.href = "login.html";
 
-   } 
+}
 
 
 
@@ -71,7 +71,7 @@ function getQuestions() {
         // Show Results
         showResults(qCount);
 
-        
+
       };
     }
   };
@@ -84,7 +84,7 @@ getQuestions();
 
 function createBullets(num) { // 5
   countSpan.innerHTML = num;
-  let count=1;
+  let count = 1;
 
   // Create Spans
   for (let i = 0; i < num; i++) {
@@ -94,11 +94,11 @@ function createBullets(num) { // 5
     // Check If Its First Span
     if (i === 0) {
       theBullet.className = "on";
-    } 
+    }
 
     // Append Bullets To Main Bullet Container
     bulletsSpanContainer.appendChild(theBullet);
-    theBullet.textContent=count; // num of Quetion
+    theBullet.textContent = count; // num of Quetion
     count++;
   }
 }
@@ -137,7 +137,7 @@ function addQuestionData(obj, count) {
       // Make First Option Selected
       if (i === 1) {
         radioInput.checked = true;
-      } 
+      }
 
       // Create Label
       let theLabel = document.createElement("label");
@@ -172,11 +172,11 @@ function checkAnswer(rAnswer, count) {
       // console.log(theChoosenAnswer);
 
 
-     
+
       let answer = { r_ans: rAnswer, u_ans: theChoosenAnswer };
       get_answers.push(answer);
       let store = window.localStorage.setItem("answer", JSON.stringify(get_answers));
-      
+
 
 
     }
@@ -184,7 +184,7 @@ function checkAnswer(rAnswer, count) {
 
   if (rAnswer === theChoosenAnswer) {
     rightAnswers++;
-  } 
+  }
 
 }
 
@@ -246,97 +246,99 @@ function showResults(count) {
       resultsContainer.style.textAlign = "center";
       resultsContainer.style.borderRadius = "10px";
 
-  }
-// create a button element
-const myButton = document.createElement("button");
-
-// set the button text
-myButton.innerText = "Show Answer";
-myButton.style.marginLeft="45%";
-myButton.style.backgroundColor="#ec7b4f"
-myButton.style.padding="30px";
-myButton.style.border="none";
-myButton.style.color="white";
-myButton.style.borderRadius="15px"
-
-
-
-// add an event listener to the button
-myButton.addEventListener("click", () => {
-  // console.log("Button clicked!");
-
-  myButton.style.padding="16px";
-  let get_storage = window.localStorage.getItem("answer");
-  let obj_answer = JSON.parse(get_storage); // turn to obj
-
-  if (obj_answer && obj_answer.length > 0) {
-    for (let i = 0; i < obj_answer.length; i++) {
-      let correct_answer = document.querySelector(`.correct_answer_${i + 1}`);
-      let u_answer = document.querySelector(`.u_answer_${i + 1}`);
-      let Q = document.querySelector(`.Q_${i + 1}`);
-      
-
-      Q.textContent = `Q${i + 1}:`;
-      Q.style.fontWeight = "bold";
-      Q.style.color = "black";
-      Q.style.marginTop = "1px solid black";
-      Q.style.textAlign="left"
-      Q.style.marginTop="30px"
-      Q.style.paddingTop="20px"
-      Q.style.borderTop="1px solid black"
-      Q.style.marginLeft="15px"
-
-
-      correct_answer.textContent = ` The correct answer is: ${obj_answer[i].r_ans}  `; 
-      correct_answer.style.fontSize = "20px";
-      correct_answer.style.fontWeight = "bold";
-      correct_answer.style.textAlign="lerf"
-      correct_answer.style.marginLeft="20px"
-      correct_answer.className="the-correct-answer"
-
-      u_answer.textContent = `Your answer is: ${obj_answer[i].u_ans}`;
-      u_answer.style.fontSize = "20px";
-      // u_answer.style.borderBottom = "1px solid black";
-      u_answer.style.textAlign="center"
-      u_answer.style.marginLeft="20px"
-
-
-      u_answer.style.marginTop = "1%";
-      correct_answer.style.marginTop = "1%";
-
-      let img = document.getElementById(`u_right_img_${i+1}`);
-
-      if (obj_answer[i].r_ans === obj_answer[i].u_ans) {
-        // console.log("you got it!");
-        
-        // Change the image source
-        img.src = "img/accept.png";
-        // Change the alt text
-        img.alt = "you answer is right";
-        // Change the image size
-        img.width = "20";
-        img.height = "20";
-
-
-      } else {
-        img.src = "img/cross.png";
-
-        // Change the alt text
-        img.alt = "you answer is wrong";
-
-         img.width = "20";
-        img.height = "20";
-      }
     }
-  } else {
-    console.log("Error: Unable to retrieve answer from localStorage");
+    // create a button element
+    const myButton = document.createElement("button");
+    // set the button text
+    myButton.innerText = "Show Answer";
+    myButton.style.marginLeft = "25%";
+    myButton.style.textAlign = "center"
+    myButton.style.width = "50%";
+    myButton.style.backgroundColor = "#ec7b4f"
+    myButton.style.padding = "20px";
+    myButton.style.border = "none";
+    myButton.style.color = "white";
+    myButton.style.borderRadius = "15px";
+
+
+
+
+    // add an event listener to the button
+    myButton.addEventListener("click", () => {
+      // console.log("Button clicked!");
+
+      myButton.style.padding = "16px";
+      let get_storage = window.localStorage.getItem("answer");
+      let obj_answer = JSON.parse(get_storage); // turn to obj
+
+      if (obj_answer && obj_answer.length > 0) {
+        for (let i = 0; i < obj_answer.length; i++) {
+          let correct_answer = document.querySelector(`.correct_answer_${i + 1}`);
+          let u_answer = document.querySelector(`.u_answer_${i + 1}`);
+          let Q = document.querySelector(`.Q_${i + 1}`);
+
+
+          Q.textContent = `Q${i + 1}:`;
+          Q.style.fontWeight = "bold";
+          Q.style.color = "black";
+          Q.style.marginTop = "1px solid black";
+          Q.style.textAlign = "left"
+          Q.style.marginTop = "30px"
+          Q.style.paddingTop = "20px"
+          Q.style.borderTop = "1px solid black"
+          Q.style.marginLeft = "15px"
+
+
+          correct_answer.textContent = ` The correct answer is: ${obj_answer[i].r_ans}  `;
+          correct_answer.style.fontSize = "20px";
+          correct_answer.style.fontWeight = "bold";
+          correct_answer.style.textAlign = "lerf"
+          correct_answer.style.marginLeft = "20px"
+          correct_answer.className = "the-correct-answer"
+
+          u_answer.textContent = `Your answer is: ${obj_answer[i].u_ans}`;
+          u_answer.style.fontSize = "20px";
+          // u_answer.style.borderBottom = "1px solid black";
+          u_answer.style.textAlign = "center"
+          u_answer.style.marginLeft = "20px"
+
+
+          u_answer.style.marginTop = "1%";
+          correct_answer.style.marginTop = "1%";
+
+          let img = document.getElementById(`u_right_img_${i + 1}`);
+
+          if (obj_answer[i].r_ans === obj_answer[i].u_ans) {
+            // console.log("you got it!");
+
+            // Change the image source
+            img.src = "img/accept.png";
+            // Change the alt text
+            img.alt = "you answer is right";
+            // Change the image size
+            img.width = "20";
+            img.height = "20";
+
+
+          } else {
+            img.src = "img/cross.png";
+
+            // Change the alt text
+            img.alt = "you answer is wrong";
+
+            img.width = "20";
+            img.height = "20";
+          }
+        }
+      } else {
+        console.log("Error: Unable to retrieve answer from localStorage");
+      }
+    });
+
+    // add the button to the page
+    document.body.appendChild(myButton);
+
   }
-});
-
-// add the button to the page
-document.body.appendChild(myButton);
-
-}
 }
 
 

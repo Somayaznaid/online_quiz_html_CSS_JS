@@ -102,7 +102,32 @@ Submit.addEventListener('click', function (event) {
         password2Value === passwordValue &&
         accept.checked
     ) {
-        saveUserData();
+        // your registration is successful
+        if (emailValue !== "" &&
+        usernameValue.length > 4 &&
+        emailValue !== "" &&
+        emailValue.match(reg_emil) &&
+        passwordValue !== "" &&
+        passwordValue.match(reg_pass) &&
+        password2Value === passwordValue &&
+        accept.checked
+    ) {
+        Swal.fire( 
+            'Good job!',
+            'You clicked the button!',
+            'success',
+            {
+            inputValidator: (result) => {
+              return !result && 'You need to agree to the terms and conditions!'
+            }
+          }).then((result) => {
+            if (result.isConfirmed) {
+              saveUserData();
+            }
+          });
+
+
+    }
 
     }
 
