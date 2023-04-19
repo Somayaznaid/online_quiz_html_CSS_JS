@@ -16,9 +16,9 @@ let get_answers = [];
 
 
 const currentSession = sessionStorage.getItem("users_log");
-const currentSessionObj = JSON.parse(currentSession);
+const currentSessionObj = JSON.parse(currentSession); // turn to obj
 
-   if (currentSessionObj === null) {
+   if (currentSessionObj === null) { // url chrome
     window.location.href="login.html";
 
    } 
@@ -35,7 +35,7 @@ function getQuestions() {
       let qCount = questionsObject.length;
 
       // Create Bullets + Set Questions Count
-      createBullets(qCount);
+      createBullets(qCount); // 5
 
       // Add Question Data
       addQuestionData(questionsObject[currentIndex], qCount); //obj currentIndex
@@ -71,18 +71,18 @@ function getQuestions() {
         // Show Results
         showResults(qCount);
 
-        Printscore(theRightAnswer, qCount);
+        
       };
     }
   };
 
-  myRequest.open("GET", "exam_data.json", true);
+  myRequest.open("GET", "exam_data.json", true); // html
   myRequest.send();
 }
 
 getQuestions();
 
-function createBullets(num) {
+function createBullets(num) { // 5
   countSpan.innerHTML = num;
   let count=1;
 
@@ -94,11 +94,11 @@ function createBullets(num) {
     // Check If Its First Span
     if (i === 0) {
       theBullet.className = "on";
-    }
+    } 
 
     // Append Bullets To Main Bullet Container
     bulletsSpanContainer.appendChild(theBullet);
-    theBullet.textContent=count;
+    theBullet.textContent=count; // num of Quetion
     count++;
   }
 }
@@ -137,7 +137,7 @@ function addQuestionData(obj, count) {
       // Make First Option Selected
       if (i === 1) {
         radioInput.checked = true;
-      }
+      } 
 
       // Create Label
       let theLabel = document.createElement("label");
@@ -169,14 +169,14 @@ function checkAnswer(rAnswer, count) {
     if (answers[i].checked) {
       theChoosenAnswer = answers[i].dataset.answer;
 
-      console.log(theChoosenAnswer);
+      // console.log(theChoosenAnswer);
 
 
-      // for (let i = 0; i < answers.length; i++) {
+     
       let answer = { r_ans: rAnswer, u_ans: theChoosenAnswer };
       get_answers.push(answer);
       let store = window.localStorage.setItem("answer", JSON.stringify(get_answers));
-      // }
+      
 
 
     }
@@ -184,38 +184,16 @@ function checkAnswer(rAnswer, count) {
 
   if (rAnswer === theChoosenAnswer) {
     rightAnswers++;
-  }
+  } 
 
 }
 
-function Printscore(rAnswer, count) {
-  let answers = document.getElementsByName("question");
 
-  let theChoosenAnswer;
-
-  for (let i = 0; i < answers.length; i++) {
-    if (answers[i].checked) {
-      theChoosenAnswer = answers[i].dataset.answer;
-
-      // if(currentIndex === count){
-      //console.log(theChoosenAnswer);
-      // let score = document.querySelector(".score");
-      // score.textContent = theChoosenAnswer;
-      // }
-
-    }
-  }
-
-  if (rAnswer === theChoosenAnswer) {
-    rightAnswers++;
-  }
-
-}
 
 function handleBullets() {
   let bulletsSpans = document.querySelectorAll(".bullets .spans span");
   let arrayOfSpans = Array.from(bulletsSpans);
-  arrayOfSpans.forEach((span, index) => {
+  arrayOfSpans.forEach((span, index) => { // loop for array
     if (currentIndex === index) {
       span.className = "on";
     }
@@ -230,13 +208,12 @@ function showResults(count) {
     submitButton.remove();
     bullets.remove();
 
-    if (rightAnswers > count / 2 && rightAnswers < count) {
+    if (rightAnswers > count / 2 && rightAnswers < count) { // 3 to 4
       theResults = `<h2 class="good">Good</h2> ${rightAnswers} From ${count} <div>  keep going  </div>`;
       resultsContainer.innerHTML = theResults;
       resultsContainer.style.padding = "10px";
       resultsContainer.style.backgroundColor = "MediumSeaGreen";
       resultsContainer.style.color = "white";
-      // resultsContainer.style.opacity = "0.7";
       resultsContainer.style.marginLeft = "25%";
       resultsContainer.style.fontWeight = "600";
       resultsContainer.style.width = "50%";
@@ -250,14 +227,13 @@ function showResults(count) {
       resultsContainer.style.padding = "10px";
       resultsContainer.style.backgroundColor = "MediumSeaGreen";
       resultsContainer.style.color = "white";
-      // resultsContainer.style.opacity = "0.7";
       resultsContainer.style.marginLeft = "25%";
       resultsContainer.style.fontWeight = "600";
       resultsContainer.style.width = "50%";
       resultsContainer.style.textAlign = "center";
       resultsContainer.style.ra = "center";
       resultsContainer.style.borderRadius = "10px";
-    } else {
+    } else { //1 to 2
       theResults = `<h2 class="bad">Bad</h2> ${rightAnswers} From ${count} <h3> never stop trying </h3>`;
       resultsContainer.innerHTML = theResults;
       resultsContainer.style.padding = "10px";
@@ -281,18 +257,17 @@ myButton.style.backgroundColor="#ec7b4f"
 myButton.style.padding="30px";
 myButton.style.border="none";
 myButton.style.color="white";
-// myButton.style.width="50px";
 myButton.style.borderRadius="15px"
 
 
 
 // add an event listener to the button
 myButton.addEventListener("click", () => {
-  console.log("Button clicked!");
-  // myButton.style.display="none"
+  // console.log("Button clicked!");
+
   myButton.style.padding="16px";
   let get_storage = window.localStorage.getItem("answer");
-  let obj_answer = JSON.parse(get_storage);
+  let obj_answer = JSON.parse(get_storage); // turn to obj
 
   if (obj_answer && obj_answer.length > 0) {
     for (let i = 0; i < obj_answer.length; i++) {
@@ -332,7 +307,7 @@ myButton.addEventListener("click", () => {
       let img = document.getElementById(`u_right_img_${i+1}`);
 
       if (obj_answer[i].r_ans === obj_answer[i].u_ans) {
-        console.log("you got it!");
+        // console.log("you got it!");
         
         // Change the image source
         img.src = "img/accept.png";

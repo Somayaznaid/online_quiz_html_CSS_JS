@@ -39,7 +39,7 @@ html_butn.addEventListener("click", function (e) {
    e.preventDefault();
 
    let currentSession = window.sessionStorage.getItem("users_log");
-   let currentSessionObj = JSON.parse(currentSession);
+   let currentSessionObj = JSON.parse(currentSession); // turn to obj
 
 
 

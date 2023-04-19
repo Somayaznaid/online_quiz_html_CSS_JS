@@ -121,15 +121,6 @@ body {
 	right: 10px;
 }
 
-/* .form-control.success i.fa-check-circle {
-	color: #2ecc71;
-	visibility: visible;
-}
-
-.form-control.error i.fa-exclamation-circle {
-	color: #e74c3c;
-	visibility: visible;
-} */
 
 .form-control small {
 	color: #e74c3c;
@@ -168,13 +159,7 @@ body {
 }
 
 
-/* #pass_log {
 
-}
-
-#username_log {
-
-} */
 
 .form_2 {
 	display: flex;
@@ -205,3 +190,25 @@ body {
   color: #073d84;
 }
 
+@media only screen and (max-width: 599px){
+   .container{
+	width: 300px;
+	height: 600px;
+   }
+   #accept{
+   width: 25px;
+  
+   }
+
+   #label_acc{
+	width: 80%;
+	margin-left: 20px;
+   }
+}
+
+@media only screen and (max-width: 514px){
+	.container_2{
+		width: 300px;
+	}
+	
+}

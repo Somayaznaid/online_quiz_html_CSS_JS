@@ -3,20 +3,20 @@ let Submit = document.getElementById('sub');
 let users = [];
 Submit.addEventListener('click', function (event) {
     event.preventDefault();
-   
+
     let username = document.getElementById("username");
-let email = document.getElementById('email');
-let password = document.getElementById('password');
-let password2 = document.getElementById('password2');
-let accept = document.getElementById('accept');
-let reg_emil = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-let reg_pass = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
-// password conditions for reg_pass
-// Contains at least one lowercase letter
-// Contains at least one uppercase letter
-// Contains at least one numeric digit
-// Is at least 8 characters long
-// Can only contain alphanumeric characters
+    let email = document.getElementById('email');
+    let password = document.getElementById('password');
+    let password2 = document.getElementById('password2');
+    let accept = document.getElementById('accept');
+    let reg_emil = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    let reg_pass = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+    // password conditions for reg_pass
+    // Contains at least one lowercase letter
+    // Contains at least one uppercase letter
+    // Contains at least one numeric digit
+    // Is at least 8 characters long
+    // Can only contain alphanumeric characters
 
     let usernameValue = username.value.trim();
     let emailValue = email.value.trim();
@@ -111,7 +111,7 @@ let reg_pass = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
 
 // save User Data in local Storage
 function saveUserData() {
-    
+
     let users = JSON.parse(localStorage.getItem('users')) || [];
     let counter = users.length + 1;
 
